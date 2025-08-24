@@ -25,13 +25,13 @@
   }
 
   function swapIcon(isOpen) {
-    menuIcon.classList.add('icon-fade');
-    setTimeout(() => {
-      menuIcon.classList.toggle('fa-bars', !isOpen);
-      menuIcon.classList.toggle('fa-xmark', isOpen);
-      menuIcon.classList.remove('icon-fade');
-    }, 120);
-  }
+  menuIcon.classList.add('icon-fade');
+  setTimeout(() => {
+    menuIcon.textContent = isOpen ? 'close' : 'menu'; // Google icons
+    menuIcon.classList.remove('icon-fade');
+  }, 120);
+}
+
 
   function openMenu() {
     menu.classList.add('open');
@@ -73,21 +73,20 @@
   const themeToggle = document.getElementById('themeToggle');
   const themeIcon = document.getElementById('themeIcon');
 
-  function setTheme(isDark) {
-    document.body.classList.toggle('dark-theme', isDark);
+ function setTheme(isDark) {
+  document.body.classList.toggle('dark-theme', isDark);
 
-    // Swap icon (weight + glyph to avoid FA conflicts)
-    themeIcon.classList.remove('fa-regular', 'fa-solid', 'fa-moon', 'fa-sun');
-    if (isDark) {
-      themeIcon.classList.add('fa-solid', 'fa-sun');
-      themeToggle?.setAttribute('aria-label', 'Switch to light theme');
-      themeToggle?.setAttribute('aria-pressed', 'true');
-    } else {
-      themeIcon.classList.add('fa-regular', 'fa-moon');
-      themeToggle?.setAttribute('aria-label', 'Switch to dark theme');
-      themeToggle?.setAttribute('aria-pressed', 'false');
-    }
+  if (isDark) {
+    themeIcon.textContent = 'light_mode'; // sun
+    themeToggle?.setAttribute('aria-label', 'Switch to light theme');
+    themeToggle?.setAttribute('aria-pressed', 'true');
+  } else {
+    themeIcon.textContent = 'dark_mode'; // moon
+    themeToggle?.setAttribute('aria-label', 'Switch to dark theme');
+    themeToggle?.setAttribute('aria-pressed', 'false');
   }
+}
+
 
   // Initial theme: saved -> system preference
   const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;

@@ -49,7 +49,6 @@ body {
   bottom: 0;
   height: calc(100dvh - 76px); /* 76px matches typical header height */
   background: #ffffff;
-  border-top: 1px solid #B6B9BE;
   transform: translateX(-100%);
   transition: transform 300ms ease;
   width: 100vw;
@@ -94,10 +93,7 @@ body.dark-theme .menu {
   color: #fff;
 }
 
-/* Change border color in dark mode */
-body.dark-theme .menu {
-  border-top: 1px solid #ffffff;
-}
+
 
 body.dark-theme .menu a { color: #fff; }
 
@@ -114,4 +110,20 @@ body.dark-theme #menuIcon { color: #fff !important; }
   background: #fee2e2;
   color: #7f1d1d;
   font-size: 14px;
+}
+
+
+.hero {
+ 
+  padding-left: 16px;
+  font-family: Outfit;
+font-size: 32px;
+font-style: normal;
+font-weight: 700;
+line-height: 45px; /* 125% */
+
+background: linear-gradient(100deg, #58CC02 0%, #368000 100%);
+background-clip: text;
+-webkit-background-clip: text;
+-webkit-text-fill-color: transparent;
 }

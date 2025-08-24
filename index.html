@@ -1,66 +1,60 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta
-    name="viewport"
-    content="width=device-width, initial-scale=1, viewport-fit=cover"
-  />
-  <meta
-    name="description"
-    content="Chrona is your personal productivity assistant, helping you manage time more efficiently."
-  />
-  <!-- Allow UA controls to adapt to dark/light -->
-  <meta name="color-scheme" content="light dark" />
 
-  <link rel="icon" type="image/x-icon" href="Chrona.ico" />
-  <link rel="stylesheet" href="style.css" />
-  <script src="https://kit.fontawesome.com/23d8c66f6b.js" crossorigin="anonymous"></script>
-  <title>Chrona | Your productivity assistant</title>
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="description"
+        content="Chrona is your personal productivity assistant, helping you manage time more efficiently." />
+    <!-- Allow UA controls to adapt to dark/light -->
+    <meta name="color-scheme" content="light dark" />
+
+    <link rel="icon" type="image/x-icon" href="Chrona.ico" />
+    <link rel="stylesheet" href="style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <title>Chrona | Your productivity assistant</title>
 </head>
 
 <body>
-  <header class="site-header">
-    <a class="logo" href="/" aria-label="Chrona home">
-      <img src="./assets/Chrona.svg" alt="Chrona" height="40" />
-    </a>
+    <header class="site-header">
+        <a class="logo" href="/" aria-label="Chrona home">
+            <img src="./assets/Chrona.svg" alt="Chrona" height="40" />
+        </a>
 
-    <button
-      id="menuToggle"
-      class="menu-toggle"
-      aria-label="Open menu"
-      aria-controls="siteMenu"
-      aria-expanded="false"
-      type="button"
-    >
-      <i id="menuIcon" class="fa-solid fa-bars fa-xl" aria-hidden="true"></i>
-    </button>
-  </header>
+        <button id="menuToggle" class="menu-toggle" aria-label="Open menu" aria-controls="siteMenu"
+            aria-expanded="false" type="button">
+            <span id="menuIcon" class="material-icons" aria-hidden="true">menu</span>
 
-  <nav id="siteMenu" class="menu" aria-hidden="true">
-    <a href="#about">About</a>
-    <a href="#why">Why Chrona</a>
-    <a href="#contact">Contact</a>
-    <a href="#waitlist">Join Waitlist</a>
+        </button>
+    </header>
 
-    <div class="menu-footer">
-      <button
-        id="themeToggle"
-        class="theme-toggle"
-        type="button"
-        aria-label="Switch to dark theme"
-        aria-pressed="false"
-        title="Toggle theme"
-      >
-        <i id="themeIcon" class="fa-regular fa-moon fa-xl" aria-hidden="true"></i>
-      </button>
-    </div>
-  </nav>
+    <nav id="siteMenu" class="menu" aria-hidden="true">
+        <a href="#about">About</a>
+        <a href="#why">Why Chrona</a>
+        <a href="#contact">Contact</a>
+        <a href="#waitlist">Join Waitlist</a>
 
-  <noscript>
-    <div class="noscript">JavaScript is required for the menu and theme switcher.</div>
-  </noscript>
+        <div class="menu-footer">
+            <button id="themeToggle" class="theme-toggle" type="button" aria-label="Switch to dark theme"
+                aria-pressed="false" title="Toggle theme">
+                <span id="themeIcon" class="material-icons" aria-hidden="true">dark_mode</span>
 
-  <script src="app.js" defer></script>
+            </button>
+        </div>
+    </nav>
+
+    <section class="hero">
+        <h1>Plan Smarter. Achieve Faster. Live Better.</h1>
+    </section>
+
+    <noscript>
+        <div class="noscript">JavaScript is required for the menu and theme switcher.</div>
+    </noscript>
+
+    <script src="app.js" defer></script>
 </body>
+
 </html>
