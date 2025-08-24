@@ -1,37 +1,66 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-    <meta name="description"
-        content="Chrona is your personal productivity assistant, helping you manage time more efficiently." />
-    <link rel="icon" type="image/x-icon" href="Chrona.ico" />
-    <link rel="stylesheet" href="style.css" />
-    <script src="https://kit.fontawesome.com/23d8c66f6b.js" crossorigin="anonymous"></script>
-    <title>Chrona | Your productivity assistant</title>
+  <meta charset="UTF-8" />
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1, viewport-fit=cover"
+  />
+  <meta
+    name="description"
+    content="Chrona is your personal productivity assistant, helping you manage time more efficiently."
+  />
+  <!-- Allow UA controls to adapt to dark/light -->
+  <meta name="color-scheme" content="light dark" />
+
+  <link rel="icon" type="image/x-icon" href="Chrona.ico" />
+  <link rel="stylesheet" href="style.css" />
+  <script src="https://kit.fontawesome.com/23d8c66f6b.js" crossorigin="anonymous"></script>
+  <title>Chrona | Your productivity assistant</title>
 </head>
 
 <body>
-    <header class="site-header">
-        <a class="logo" href="/">
-            <img src="./assets/Chrona.svg" alt="Chrona" height="40" />
-        </a>
+  <header class="site-header">
+    <a class="logo" href="/" aria-label="Chrona home">
+      <img src="./assets/Chrona.svg" alt="Chrona" height="40" />
+    </a>
 
-        <button id="menuToggle" class="menu-toggle" aria-label="Open menu" aria-controls="siteMenu"
-            aria-expanded="false" type="button">
-            <i id="menuIcon" class="fa-solid fa-bars fa-xl" aria-hidden="true"></i>
-        </button>
-    </header>
+    <button
+      id="menuToggle"
+      class="menu-toggle"
+      aria-label="Open menu"
+      aria-controls="siteMenu"
+      aria-expanded="false"
+      type="button"
+    >
+      <i id="menuIcon" class="fa-solid fa-bars fa-xl" aria-hidden="true"></i>
+    </button>
+  </header>
 
-    <nav id="siteMenu" class="menu" aria-hidden="true">
-        <a href="#about">About</a>
-        <a href="#contact">Why Chrona</a>
-        <a href="#pricing">Contact</a>
-        <a href="#pricing">Join Waitlist</a>
-    </nav>
+  <nav id="siteMenu" class="menu" aria-hidden="true">
+    <a href="#about">About</a>
+    <a href="#why">Why Chrona</a>
+    <a href="#contact">Contact</a>
+    <a href="#waitlist">Join Waitlist</a>
 
-    <script src="app.js" defer></script>
+    <div class="menu-footer">
+      <button
+        id="themeToggle"
+        class="theme-toggle"
+        type="button"
+        aria-label="Switch to dark theme"
+        aria-pressed="false"
+        title="Toggle theme"
+      >
+        <i id="themeIcon" class="fa-regular fa-moon fa-xl" aria-hidden="true"></i>
+      </button>
+    </div>
+  </nav>
+
+  <noscript>
+    <div class="noscript">JavaScript is required for the menu and theme switcher.</div>
+  </noscript>
+
+  <script src="app.js" defer></script>
 </body>
-
 </html>
