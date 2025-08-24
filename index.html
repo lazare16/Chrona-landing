@@ -4,36 +4,60 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Fugaz+One&display=swap" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
-    <title>Chrona | Your AI partner in productivity</title>
+    <meta name="description"
+        content="Chrona is your personal productivity assistant, helping you manage time more efficiently.">
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="image/x-icon" href="Chrona.ico">
+    <script src="https://kit.fontawesome.com/23d8c66f6b.js" crossorigin="anonymous"></script>
+    <title>Chrona | Your productivity assistant</title>
 </head>
 
 <body>
+    <header>
+        <div class="logo">
+            <img src="./assets/Chrona.svg" alt="" height="40">
+        </div>
 
-    <header class="flex justify-between items-center p-4">
-        <div class="flex items-center space-x-2">
-            <img src="./assets/Chrona.svg" alt="Chrona" class="h-8">
-            <h1 style="font-family: 'Fugaz One', sans-serif;" class="text-3xl font-bold">Chrona</h1>
-        </div>
-        <div class="md:hidden">
-            <button id="menu-toggle" class="focus:outline-none flex justify-center items-center">
-              <i class="material-icons">menu</i>
-            </button>
-        </div>
-        <nav class="hidden md:block">
+        <button onclick="toggleMenu()" class="menu-toggle">
+            <i id="menu-icon" class="fa-solid fa-bars fa-xl"></i>
+        </button>
+    </header>
+
+    <div id="menu-container" class="menu-container">
+
+        <nav class="menu-nav">
             <ul>
-                <li><a href="#features">Features</a></li>
-                <li><a href="#pricing">Pricing</a></li>
                 <li><a href="#about">About</a></li>
+                <li><a href="#contact">Why Chrona</a></li>
+                <li><a href="#pricing">Contact</a></li>
+                <li><a href="#pricing">Join Waitlist</a></li>
+
             </ul>
         </nav>
-    </header>
-
-    </header>
+    </div>
 </body>
+
+
+.
+<script>
+    function toggleMenu() {
+        const menuContainer = document.getElementById("menu-container");
+        const menuIcon = document.getElementById("menu-icon");
+        menuContainer.classList.toggle("open");
+        document.body.classList.toggle("menu-open");
+
+        menuIcon.classList.add("icon-fade");
+        setTimeout(() => {
+            if (menuContainer.classList.contains("open")) {
+                menuIcon.classList.remove("fa-bars");
+                menuIcon.classList.add("fa-xmark");
+            } else {
+                menuIcon.classList.remove("fa-xmark");
+                menuIcon.classList.add("fa-bars");
+            }
+            menuIcon.classList.remove("icon-fade");
+        }, 150);
+    }
+</script>
 
 </html>
