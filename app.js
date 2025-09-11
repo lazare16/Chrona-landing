@@ -1,105 +1,116 @@
-(function () {
-  // ============ MENU ============ //
-  const menu = document.getElementById('siteMenu');
-  const menuToggle = document.getElementById('menuToggle');
-  const menuIcon = document.getElementById('menuIcon');
+const menu = document.getElementsByClassName("menu")[0];
+const toggle_theme_button = document.getElementById("theme-toggle");
+const toggle_menu_button = document.getElementById("toggle-menu");
+const htmlElement = document.documentElement;
+const icon = document.createElement("span");
+icon.classList.add("material-icons");
+const light_mode_icon = "light_mode";
+const dark_mode_icon = "dark_mode";
+const menu_open_icon = "menu";
+const menu_close_icon = "close";
+icon.textContent = dark_mode_icon;
+toggle_theme_button.appendChild(icon);
 
-  let lockedScrollY = 0;
+const body = document.body;
+const sheet = document.getElementById("bottomSheet");
+const backdrop = document.getElementById("backdrop");
+const openBtn = document.getElementById("join-waitlist");
 
-  function lockScroll() {
-    lockedScrollY = window.scrollY || window.pageYOffset || 0;
-    document.body.style.top = `-${lockedScrollY}px`;
-    document.body.classList.add('menu-open');
-  }
+const menuIcon = document.createElement("span");
+menuIcon.classList.add("material-icons");
+menuIcon.textContent = menu_open_icon;
+toggle_menu_button.appendChild(menuIcon);
 
-  function unlockScroll() {
-    document.body.classList.remove('menu-open');
-    document.body.style.top = '';
-    window.scrollTo(0, lockedScrollY);
-  }
-
-  function setAria(isOpen) {
-    menuToggle.setAttribute('aria-expanded', String(isOpen));
-    menu.setAttribute('aria-hidden', String(!isOpen));
-    menuToggle.setAttribute('aria-label', isOpen ? 'Close menu' : 'Open menu');
-  }
-
-  function swapIcon(isOpen) {
-  menuIcon.classList.add('icon-fade');
-  setTimeout(() => {
-    menuIcon.textContent = isOpen ? 'close' : 'menu'; // Google icons
-    menuIcon.classList.remove('icon-fade');
-  }, 120);
-}
-
-
-  function openMenu() {
-    menu.classList.add('open');
-    swapIcon(true);
-    setAria(true);
-    lockScroll();
-  }
-
-  function closeMenu() {
-    menu.classList.remove('open');
-    swapIcon(false);
-    setAria(false);
-    unlockScroll();
-  }
-
-  function toggleMenu() {
-    const isOpening = !menu.classList.contains('open');
-    isOpening ? openMenu() : closeMenu();
-  }
-
-  menuToggle.addEventListener('click', toggleMenu);
-
-  document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' && menu.classList.contains('open')) {
-      closeMenu();
-    }
-  });
-
-  // Extra safety on mobile
-  menu.addEventListener('touchmove', (e) => {
-    if (menu.classList.contains('open')) e.preventDefault();
-  }, { passive: false });
-
-  // Ensure correct icon/aria on load
-  swapIcon(false);
-  setAria(false);
-
-  // ============ THEME ============ //
-  const themeToggle = document.getElementById('themeToggle');
-  const themeIcon = document.getElementById('themeIcon');
-
- function setTheme(isDark) {
-  document.body.classList.toggle('dark-theme', isDark);
-
-  if (isDark) {
-    themeIcon.textContent = 'light_mode'; // sun
-    themeToggle?.setAttribute('aria-label', 'Switch to light theme');
-    themeToggle?.setAttribute('aria-pressed', 'true');
+function toggleMenu() {
+  if (menu.classList.contains("menu-open")) {
+    menu.classList.remove("menu-open");
+    menuIcon.textContent = menu_open_icon;
   } else {
-    themeIcon.textContent = 'dark_mode'; // moon
-    themeToggle?.setAttribute('aria-label', 'Switch to dark theme');
-    themeToggle?.setAttribute('aria-pressed', 'false');
+    menu.classList.add("menu-open");
+    menuIcon.textContent = menu_close_icon;
   }
 }
 
+function toggleTheme() {
+  if (htmlElement.getAttribute("data-theme") === "light") {
+    htmlElement.setAttribute("data-theme", "dark");
+    localStorage.setItem("user-theme", "dark");
+    icon.textContent = light_mode_icon;
+  } else {
+    htmlElement.setAttribute("data-theme", "light");
+    localStorage.setItem("user-theme", "light");
+    icon.textContent = dark_mode_icon;
+  }
+}
 
-  // Initial theme: saved -> system preference
-  const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-  const saved = localStorage.getItem('theme'); // "dark" | "light" | null
-  const initialDark = saved ? saved === 'dark' : prefersDark;
-  setTheme(initialDark);
+// const firstFocusable = () => sheet.querySelector('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])');
 
-  themeToggle?.addEventListener('click', () => {
-    const nextDark = !document.body.classList.contains('dark-theme');
-    setTheme(nextDark);
-    localStorage.setItem('theme', nextDark ? 'dark' : 'light');
 
-    // Close menu if open (same scope => safe)
-    if (menu.classList.contains('open')) closeMenu();
-  });
-})();
+
+function openSheet() {
+  sheet.classList.add("show");
+  backdrop.classList.add("show");
+  body.classList.add("modal-open");
+  // const f = firstFocusable();
+  // (f || sheet).focus();
+  // document.addEventListener('keydown', onKeydown);
+}
+
+function closeSheet() {
+  sheet.classList.remove("show");
+  backdrop.classList.remove("show");
+  body.classList.remove("modal-open");
+  document.removeEventListener("keydown", onKeydown);
+  openBtn.focus();
+}
+
+// function onKeydown(e) {
+//   if (e.key === 'Escape') closeSheet();
+//   if (e.key === 'Tab') {
+//     const focusables = sheet.querySelectorAll('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])');
+//     const first = focusables[0];
+//     const last = focusables[focusables.length - 1];
+//     if (e.shiftKey && document.activeElement === first) {
+//       last.focus(); e.preventDefault();
+//     } else if (!e.shiftKey && document.activeElement === last) {
+//       first.focus(); e.preventDefault();
+//     }
+//   }
+// }
+
+backdrop.addEventListener("click", closeSheet);
+openBtn.addEventListener("click", openSheet);
+closeBtn.addEventListener("click", closeSheet);
+cancelBtn.addEventListener("click", closeSheet);
+
+// Swipe down to close
+const startDrag = (y) => {
+  isDragging = true;
+  startY = y;
+  currentY = y;
+  sheet.style.transition = "none";
+};
+const updateDrag = (y) => {
+  if (!isDragging) return;
+  currentY = y;
+  const delta = Math.max(0, currentY - startY);
+  sheet.style.translate = `0 ${delta}px`;
+  backdrop.style.opacity = String(Math.max(0, 1 - delta / 300));
+};
+const endDrag = () => {
+  if (!isDragging) return;
+  const delta = Math.max(0, currentY - startY);
+  sheet.style.transition = "";
+  sheet.style.translate = "";
+  backdrop.style.opacity = "";
+  isDragging = false;
+  if (delta > 120) closeSheet();
+};
+
+sheet.addEventListener("touchstart", (e) => startDrag(e.touches[0].clientY), {
+  passive: true,
+});
+sheet.addEventListener("touchmove", (e) => updateDrag(e.touches[0].clientY), {
+  passive: true,
+});
+sheet.addEventListener("touchend", endDrag);

@@ -2,59 +2,90 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-    <meta name="description"
-        content="Chrona is your personal productivity assistant, helping you manage time more efficiently." />
-    <!-- Allow UA controls to adapt to dark/light -->
-    <meta name="color-scheme" content="light dark" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="description"
+    content="Chrona is your AI-powered productivity assistant, helping you manage time, tasks, and focus more efficiently. Join the waitlist to test the demo first." />
+  <!-- Allow UA controls to adapt to dark/light -->
+  <meta name="color-scheme" content="light dark" />
 
-    <link rel="icon" type="image/x-icon" href="Chrona.ico" />
-    <link rel="stylesheet" href="style.css" />
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <title>Chrona | Your productivity assistant</title>
+  <link rel="icon" type="image/x-icon" href="Chrona.ico" />
+  <link rel="stylesheet" href="style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <title>Chrona | Your productivity assistant</title>
 </head>
 
 <body>
-    <header class="site-header">
-        <a class="logo" href="/" aria-label="Chrona home">
-            <img src="./assets/Chrona.svg" alt="Chrona" height="40" />
-        </a>
+  <!-- Modal Backdrop -->
+  <div class="backdrop" id="backdrop" aria-hidden="true"></div>
 
-        <button id="menuToggle" class="menu-toggle" aria-label="Open menu" aria-controls="siteMenu"
-            aria-expanded="false" type="button">
-            <span id="menuIcon" class="material-icons" aria-hidden="true">menu</span>
+  <!-- Bottom Sheet Modal -->
+  <div class="sheet" id="bottomSheet" role="dialog" aria-modal="true" aria-labelledby="sheetTitle"
+    aria-describedby="sheetDesc" tabindex="-1">
+    <div class="sheet__handle" aria-hidden="true"></div>
+    
+    <div class="sheet__body" id="sheetDesc">
+    a
+    </div>
+   
+  </div>
 
-        </button>
-    </header>
+  <header role="banner" aria-label="Chrona main header">
+    <a href="/" aria-label="Go to Chrona homepage">
+      <img src="assets/icons/Chrona.svg" alt="Chrona logo" height="32px">
+    </a>
 
-    <nav id="siteMenu" class="menu" aria-hidden="true">
-        <a href="#about">About</a>
-        <a href="#why">Why Chrona</a>
-        <a href="#contact">Contact</a>
-        <a href="#waitlist">Join Waitlist</a>
-
-        <div class="menu-footer">
-            <button id="themeToggle" class="theme-toggle" type="button" aria-label="Switch to dark theme"
-                aria-pressed="false" title="Toggle theme">
-                <span id="themeIcon" class="material-icons" aria-hidden="true">dark_mode</span>
-
-            </button>
-        </div>
+    <nav id="main-navigation" role="navigation" aria-label="Main navigation">
+      <ul>
+        <li role="menuitem"><a href="#overview">Vision</a></li>
+        <li role="menuitem"><a href="#contact">Contact</a></li>
+        <li role="menuitem"><a href="#waitlist" class="highlight">Join Waitlist</a></li>
+      </ul>
     </nav>
+    <button id="toggle-menu" type="button" aria-label="Open navigation menu" aria-controls="main-navigation"
+      aria-expanded="false" onclick="toggleMenu()">
+      <!-- <span class="material-icons" aria-hidden="true">menu</span> -->
+    </button>
+  </header>
 
-    <section class="hero">
-        <h1>Plan Smarter. Achieve Faster. Live Better.</h1>
+  <main role="main" aria-label="Chrona main content">
+    <section aria-label="Chrona hero section" class="hero-section">
+      <h1 class="hero-title">
+        Plan Smarter. <br />
+        Achieve Faster. <br />
+        Live Better. <br />
+      </h1>
+      <p class="hero-subtext">AI assistant for your time management.</p>
+
+      <button class="join-waitlist" id="join-waitlist" aria-label="Join Chrona waitlist">
+        Join waitlist
+      </button>
     </section>
 
-    <noscript>
-        <div class="noscript">JavaScript is required for the menu and theme switcher.</div>
-    </noscript>
+  </main>
 
-    <script src="app.js" defer></script>
+
+
+
+  <section id="menu" role="menu" aria-label="Secondary navigation menu" aria-hidden="true" class="menu">
+    <ul>
+      <li role="menuitem"><a href="#overview">Vision</a></li>
+      <li role="menuitem"><a href="#contact">Contact</a></li>
+      <li role="menuitem"><a href="#waitlist" class="highlight">Join Waitlist</a></li>
+    </ul>
+
+
+    <button id="theme-toggle" role="button" aria-label="theme toggle button" aria-pressed="false"
+      onclick="toggleTheme()"></button>
+
+  </section>
+
+
+  <script src="app.js" defer></script>
 </body>
 
 </html>
