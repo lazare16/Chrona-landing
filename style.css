@@ -12,11 +12,6 @@ html {
   --spacing: 1rem;
   --color: #000;
   --background-color: #fff;
-
-  --sheet-max-height: 86vh;
-  --sheet-radius: 16px;
-  --sheet-ease: cubic-bezier(.2, .8, .2, 1);
-  --shadow-xl: 0 20px 25px rgba(0, 0, 0, .15), 0 10px 10px rgba(0, 0, 0, .1);
 }
 
 :root[data-theme="dark"] {
@@ -31,23 +26,21 @@ html {
   background: rgba(0,0,0,.5);   
   opacity: 0;                  
   pointer-events: none;        
-  transition: opacity .28s var(--sheet-ease);
+  transition: opacity .28s cubic-bezier(.2, .8, .2, 1);
   z-index: 1;              
 }
 
 .backdrop.show { opacity: 1; pointer-events: auto; }
 
 .sheet {
-  position: fixed; left: 0; right: 0; bottom: 0;
+  position: fixed; 
+  left: 0; 
+  right: 0; 
+  bottom: 0;
   translate: 0 100%;
-  background: #fff;
-  border-top-left-radius: var(--sheet-radius);
-  border-top-right-radius: var(--sheet-radius);
-  max-height: var(--sheet-max-height);
-  box-shadow: var(--shadow-xl);
-  display: grid;
-  grid-template-rows: auto 1fr auto;
-  transition: translate .28s var(--sheet-ease);
+  max-height: 80vh;
+  box-shadow:  0 20px 25px rgba(0, 0, 0, .15), 0 10px 10px rgba(0, 0, 0, .1);;
+  transition: translate .28s cubic-bezier(.2, .8, .2, 1);
   will-change: transform;
   touch-action: none;
   z-index: 2;
@@ -55,13 +48,20 @@ html {
 .sheet.show { translate: 0 0; }
 
 .sheet__handle {
-  width: 44px; height: 5px; border-radius: 999px;
-  background: #e2e2e2; margin: 10px auto 6px;
+  width: 44px; 
+  height: 5px; 
+  border-radius: 999px;
+  background: #e2e2e2; 
+  margin: 10px auto 6px;
 }
 
 
 .sheet__body {
-  overflow: auto; padding: 0 16px 16px;
+  overflow: auto; 
+  padding: var(--spacing);
+  background: var(--background-color);
+  border-top-left-radius: 16px;
+  border-top-right-radius: 16px;
 }
 
 body.modal-open { overflow: hidden; }

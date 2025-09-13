@@ -1,115 +1,188 @@
-const menu = document.getElementsByClassName("menu")[0];
-const toggle_theme_button = document.getElementById("theme-toggle");
-const toggle_menu_button = document.getElementById("toggle-menu");
-const htmlElement = document.documentElement;
-const icon = document.createElement("span");
-icon.classList.add("material-icons");
-const light_mode_icon = "light_mode";
-const dark_mode_icon = "dark_mode";
-const menu_open_icon = "menu";
-const menu_close_icon = "close";
-icon.textContent = dark_mode_icon;
-toggle_theme_button.appendChild(icon);
+// Organized UI script
+// -------------------------------------------------------------
+// 1) Constants / Config
+// -------------------------------------------------------------
+const ICONS = {
+  light: "light_mode",
+  dark: "dark_mode",
+  menuOpen: "menu",
+  menuClose: "close",
+};
+const SELECTORS = {
+  menu: ".menu",
+  themeToggle: "#theme-toggle",
+  menuToggle: "#toggle-menu",
+  sheet: "#bottomSheet",
+  backdrop: "#backdrop",
+  openBtn: "#join-waitlist",
+};
+const DRAG_CLOSE_PX = 120;
+const FOCUSABLE_SEL =
+  'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])';
 
-const body = document.body;
-const sheet = document.getElementById("bottomSheet");
-const backdrop = document.getElementById("backdrop");
-const openBtn = document.getElementById("join-waitlist");
+// -------------------------------------------------------------
+// 2) Utils
+// -------------------------------------------------------------
+const qs = (s, root = document) => root.querySelector(s);
 
-const menuIcon = document.createElement("span");
-menuIcon.classList.add("material-icons");
-menuIcon.textContent = menu_open_icon;
-toggle_menu_button.appendChild(menuIcon);
+// -------------------------------------------------------------
+// 3) Run after DOM is ready (safe even if script is in <head>)
+// -------------------------------------------------------------
+window.addEventListener("DOMContentLoaded", () => {
+  // -----------------------------------------------------------
+  // 4) Cache DOM
+  // -----------------------------------------------------------
+  const htmlEl = document.documentElement;
+  const body = document.body;
+  const menu = qs(SELECTORS.menu);
+  const themeToggleBtn = qs(SELECTORS.themeToggle);
+  const menuToggleBtn = qs(SELECTORS.menuToggle);
+  const sheet = qs(SELECTORS.sheet);
+  const backdrop = qs(SELECTORS.backdrop);
+  const openBtn = qs(SELECTORS.openBtn);
 
-function toggleMenu() {
-  if (menu.classList.contains("menu-open")) {
-    menu.classList.remove("menu-open");
-    menuIcon.textContent = menu_open_icon;
-  } else {
-    menu.classList.add("menu-open");
-    menuIcon.textContent = menu_close_icon;
+  // -----------------------------------------------------------
+  // 5) State
+  // -----------------------------------------------------------
+  let isDragging = false;
+  let startY = 0;
+  let currentY = 0;
+
+  // -----------------------------------------------------------
+  // 6) Setup (icons, initial theme)
+  // -----------------------------------------------------------
+  // Theme toggle icon
+  const themeIcon = document.createElement("span");
+  themeIcon.classList.add("material-icons");
+
+  const storedTheme = localStorage.getItem("user-theme");
+  const osPrefersDark = window.matchMedia?.("(prefers-color-scheme: dark)").matches;
+  const initialTheme = storedTheme || (osPrefersDark ? "dark" : "light");
+  htmlEl.setAttribute("data-theme", initialTheme);
+  // Show the opposite icon (tap indicates the other mode)
+  themeIcon.textContent = initialTheme === "light" ? ICONS.dark : ICONS.light;
+  themeToggleBtn?.appendChild(themeIcon);
+
+  // Menu toggle icon
+  const menuIcon = document.createElement("span");
+  menuIcon.classList.add("material-icons");
+  menuIcon.textContent = ICONS.menuOpen;
+  menuToggleBtn?.appendChild(menuIcon);
+  menuToggleBtn?.setAttribute("aria-expanded", "false");
+
+  // Optional dialog semantics
+  if (sheet) {
+    sheet.setAttribute("role", "dialog");
+    sheet.setAttribute("aria-modal", "true");
   }
-}
 
-function toggleTheme() {
-  if (htmlElement.getAttribute("data-theme") === "light") {
-    htmlElement.setAttribute("data-theme", "dark");
-    localStorage.setItem("user-theme", "dark");
-    icon.textContent = light_mode_icon;
-  } else {
-    htmlElement.setAttribute("data-theme", "light");
-    localStorage.setItem("user-theme", "light");
-    icon.textContent = dark_mode_icon;
+  // -----------------------------------------------------------
+  // 7) Handlers
+  // -----------------------------------------------------------
+  const toggleMenu = () => {
+    if (!menu) return;
+    const open = menu.classList.toggle("menu-open");
+    menuIcon.textContent = open ? ICONS.menuClose : ICONS.menuOpen;
+    menuToggleBtn?.setAttribute("aria-expanded", String(open));
+  };
+
+  const toggleTheme = () => {
+    const current = htmlEl.getAttribute("data-theme") === "light" ? "dark" : "light";
+    htmlEl.setAttribute("data-theme", current);
+    localStorage.setItem("user-theme", current);
+    themeIcon.textContent = current === "light" ? ICONS.dark : ICONS.light;
+  };
+
+  const getFocusables = () =>
+    sheet ? [...sheet.querySelectorAll(FOCUSABLE_SEL)].filter(el => !el.hasAttribute("disabled")) : [];
+
+  const onKeydown = (e) => {
+    if (!sheet || !sheet.classList.contains("show")) return;
+
+    if (e.key === "Escape") {
+      e.preventDefault();
+      closeSheet();
+      return;
+    }
+    if (e.key === "Tab") {
+      const focusables = getFocusables();
+      if (focusables.length === 0) {
+        e.preventDefault();
+        sheet.focus();
+        return;
+      }
+      const first = focusables[0];
+      const last = focusables[focusables.length - 1];
+      if (e.shiftKey && document.activeElement === first) {
+        e.preventDefault();
+        last.focus();
+      } else if (!e.shiftKey && document.activeElement === last) {
+        e.preventDefault();
+        first.focus();
+      }
+    }
+  };
+
+  const openSheet = () => {
+    if (!sheet || !backdrop) return;
+    sheet.classList.add("show");
+    backdrop.classList.add("show");
+    body.classList.add("modal-open");
+    document.addEventListener("keydown", onKeydown);
+    const f = getFocusables()[0];
+    (f || sheet).focus();
+  };
+
+  const closeSheet = () => {
+    if (!sheet || !backdrop) return;
+    sheet.classList.remove("show");
+    backdrop.classList.remove("show");
+    body.classList.remove("modal-open");
+    // Reset inline styles from drag
+    sheet.style.transition = "";
+    sheet.style.transform = "";
+    backdrop.style.opacity = "";
+    document.removeEventListener("keydown", onKeydown);
+    openBtn?.focus();
+  };
+
+  // Swipe down to close
+  const startDrag = (y) => {
+    if (!sheet) return;
+    isDragging = true;
+    startY = y;
+    currentY = y;
+    sheet.style.transition = "none";
+  };
+  const updateDrag = (y) => {
+    if (!isDragging || !sheet || !backdrop) return;
+    currentY = y;
+    const delta = Math.max(0, currentY - startY);
+    sheet.style.transform = `translateY(${delta}px)`;
+    backdrop.style.opacity = String(Math.max(0, 1 - delta / 300));
+  };
+  const endDrag = () => {
+    if (!isDragging || !sheet || !backdrop) return;
+    const delta = Math.max(0, currentY - startY);
+    isDragging = false;
+    sheet.style.transition = "";
+    sheet.style.transform = "";
+    backdrop.style.opacity = "";
+    if (delta > DRAG_CLOSE_PX) closeSheet();
+  };
+
+  // -----------------------------------------------------------
+  // 8) Event wiring
+  // -----------------------------------------------------------
+  themeToggleBtn?.addEventListener("click", toggleTheme);
+  menuToggleBtn?.addEventListener("click", toggleMenu);
+
+  backdrop?.addEventListener("click", closeSheet);
+  openBtn?.addEventListener("click", openSheet);
+
+  if (sheet) {
+    sheet.addEventListener("touchstart", (e) => startDrag(e.touches[0].clientY), { passive: true });
+    sheet.addEventListener("touchmove", (e) => updateDrag(e.touches[0].clientY), { passive: true });
+    sheet.addEventListener("touchend", endDrag);
   }
-}
-
-// const firstFocusable = () => sheet.querySelector('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])');
-
-
-
-function openSheet() {
-  sheet.classList.add("show");
-  backdrop.classList.add("show");
-  body.classList.add("modal-open");
-  // const f = firstFocusable();
-  // (f || sheet).focus();
-  // document.addEventListener('keydown', onKeydown);
-}
-
-function closeSheet() {
-  sheet.classList.remove("show");
-  backdrop.classList.remove("show");
-  body.classList.remove("modal-open");
-  document.removeEventListener("keydown", onKeydown);
-  openBtn.focus();
-}
-
-// function onKeydown(e) {
-//   if (e.key === 'Escape') closeSheet();
-//   if (e.key === 'Tab') {
-//     const focusables = sheet.querySelectorAll('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])');
-//     const first = focusables[0];
-//     const last = focusables[focusables.length - 1];
-//     if (e.shiftKey && document.activeElement === first) {
-//       last.focus(); e.preventDefault();
-//     } else if (!e.shiftKey && document.activeElement === last) {
-//       first.focus(); e.preventDefault();
-//     }
-//   }
-// }
-
-backdrop.addEventListener("click", closeSheet);
-openBtn.addEventListener("click", openSheet);
-
-
-// Swipe down to close
-const startDrag = (y) => {
-  isDragging = true;
-  startY = y;
-  currentY = y;
-  sheet.style.transition = "none";
-};
-const updateDrag = (y) => {
-  if (!isDragging) return;
-  currentY = y;
-  const delta = Math.max(0, currentY - startY);
-  sheet.style.translate = `0 ${delta}px`;
-  backdrop.style.opacity = String(Math.max(0, 1 - delta / 300));
-};
-const endDrag = () => {
-  if (!isDragging) return;
-  const delta = Math.max(0, currentY - startY);
-  sheet.style.transition = "";
-  sheet.style.translate = "";
-  backdrop.style.opacity = "";
-  isDragging = false;
-  if (delta > 120) closeSheet();
-};
-
-sheet.addEventListener("touchstart", (e) => startDrag(e.touches[0].clientY), {
-  passive: true,
 });
-sheet.addEventListener("touchmove", (e) => updateDrag(e.touches[0].clientY), {
-  passive: true,
-});
-sheet.addEventListener("touchend", endDrag);
