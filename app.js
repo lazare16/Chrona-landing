@@ -80,8 +80,7 @@ function closeSheet() {
 
 backdrop.addEventListener("click", closeSheet);
 openBtn.addEventListener("click", openSheet);
-closeBtn.addEventListener("click", closeSheet);
-cancelBtn.addEventListener("click", closeSheet);
+
 
 // Swipe down to close
 const startDrag = (y) => {
