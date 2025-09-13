@@ -4,7 +4,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-  <meta name="description" content="Chrona is your AI-powered productivity assistant, helping you manage time, tasks, and focus more efficiently. Join the waitlist to test the demo first." />
+  <meta name="description"
+    content="Chrona is your AI-powered productivity assistant, helping you manage time, tasks, and focus more efficiently. Join the waitlist to test the demo first." />
   <meta name="color-scheme" content="light dark" />
 
   <link rel="icon" type="image/x-icon" href="Chrona.ico" />
@@ -23,11 +24,22 @@
   <div class="sheet" id="bottomSheet" role="dialog" aria-modal="true" aria-labelledby="sheetTitle"
     aria-describedby="sheetDesc" tabindex="-1">
     <div class="sheet__handle" aria-hidden="true"></div>
-    
-    <div class="sheet__body" id="sheetDesc">
-    a
-    </div>
-   
+
+    <form action="">
+      <div class="sheet__body" id="sheet-description">
+
+        <div class="input-container" data-role="email-input">
+          <input class="input" id="email" name="email" type="email" inputmode="email" autocomplete="email"
+            placeholder=" " required aria-describedby="email-help" />
+          <label class="input-label" for="email">Email</label>
+        </div>
+      </div>
+
+      <div class="sheet__footer" id="sheet-footer">
+        <button type="submit" aria-label="Submit email form">Submit</button>
+      </div>
+    </form>
+
   </div>
 
   <header role="banner" aria-label="Chrona main header">
