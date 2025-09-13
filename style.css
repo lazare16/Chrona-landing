@@ -169,15 +169,21 @@ main {
 }
 
 .hero-subtext {
-  color: #475467;
   font-family: 'Inter', sans-serif;
   font-size: 0.875rem;
   font-style: normal;
   font-weight: 300;
   line-height: 1.25rem;
   margin-top: 1.563rem;
-  /* 128.571% */
 }
+
+.hero-subtext[data-theme="light"]{
+  color: #475467;
+} 
+
+.hero-subtext[data-theme="dark"]{
+  color: white;
+} 
 
 .join-waitlist {
   width: 100%;

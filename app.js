@@ -91,6 +91,8 @@ window.addEventListener("DOMContentLoaded", () => {
     htmlEl.setAttribute("data-theme", current);
     localStorage.setItem("user-theme", current);
     themeIcon.textContent = current === "light" ? ICONS.dark : ICONS.light;
+    menu.classList.remove("menu-open");
+    menuIcon.textContent = ICONS.menuOpen;
   };
 
   const getFocusables = () =>
