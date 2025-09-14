@@ -12,12 +12,14 @@ html {
   --spacing: 1rem;
   --color: #000;
   --background-color: #fff;
+  --hero-subtext-color: #475467;
 }
 
 :root[data-theme="dark"] {
   --spacing: 1rem;
   --background-color: #121212;
   --color: #fff;
+  --hero-subtext-color: #fff;
 }
 
 .backdrop {
@@ -260,6 +262,7 @@ main {
 }
 
 .hero-subtext {
+  color: var(--hero-subtext-color);
   font-family: 'Inter', sans-serif;
   font-size: 0.875rem;
   font-style: normal;
@@ -268,13 +271,7 @@ main {
   margin-top: 1.563rem;
 }
 
-.hero-subtext[data-theme="light"] {
-  color: #475467;
-}
 
-.hero-subtext[data-theme="dark"] {
-  color: white;
-}
 
 .join-waitlist {
   width: 100%;
