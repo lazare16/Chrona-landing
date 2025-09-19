@@ -156,7 +156,29 @@ input:-webkit-autofill:active {
   font-size: 14px;
   font-style: normal;
   font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 
+.sheet__footer>button > .button-loader{
+  width: 10px;
+  height: 10px;
+  display: none;
+  border: 4px solid white;
+  border-top: 4px solid #58CC02;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
 }
 
 body.modal-open {
@@ -289,3 +311,4 @@ main {
   margin-top: 2rem;
   cursor: pointer;
 }
+
