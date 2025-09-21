@@ -100,6 +100,7 @@ window.addEventListener("DOMContentLoaded", () => {
 
   // Handlers
   const toggleMenu = () => {
+    console.log("toggling menu");
     if (!menu) return;
     const open = menu.classList.toggle("menu-open");
     menuIcon.textContent = open ? ICONS.menuClose : ICONS.menuOpen;
@@ -205,7 +206,7 @@ window.addEventListener("DOMContentLoaded", () => {
 
   // Event wiring (JS-driven; inline onclicks are also supported via window.* above)
   themeToggleBtn?.addEventListener("click", toggleTheme);
-  menuToggleBtn?.addEventListener("click", toggleMenu);
+
 
   backdrop?.addEventListener("click", closeSheet);
   openBtn?.addEventListener("click", openSheet);
@@ -229,24 +230,26 @@ window.addEventListener("DOMContentLoaded", () => {
   }
 });
 
+const email_form = document.getElementById("email_form");
 const send_email_button = document.getElementById("submit-email");
 const button_text = document.getElementById("button-text");
 const button_loader = document.getElementById("button-loader");
 
-send_email_button.addEventListener("click", function (e) {
+email_form.addEventListener("submit", (e) => {
   e.preventDefault();
-
-  // Show loader
-  button_loader.style.display = "inline-block";
-  button_text.textContent = ""; // clears only the text, not the loader
+  console.log("submit");
+  
+ button_loader.style.display = "inline-block";
+  button_text.textContent = ""; 
   send_email_button.disabled = true;
 
-  // Hide loader after 5 seconds
   setTimeout(() => {
     button_loader.style.display = "none";
-    button_text.textContent = "Send Email"; // restore text
+    button_text.textContent = "Send Email"; 
     send_email_button.disabled = false;
   }, 5000);
 });
+
+
 
 

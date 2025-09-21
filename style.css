@@ -161,7 +161,11 @@ input:-webkit-autofill:active {
   justify-content: center;
 }
 
-.sheet__footer>button > .button-loader{
+.sheet__footer>button:disabled {
+  cursor: not-allowed;
+}
+
+.sheet__footer>button>.button-loader {
   width: 10px;
   height: 10px;
   display: none;
@@ -172,13 +176,13 @@ input:-webkit-autofill:active {
 }
 
 @keyframes spin {
-    0% {
-        transform: rotate(0deg);
-    }
+  0% {
+    transform: rotate(0deg);
+  }
 
-    100% {
-        transform: rotate(360deg);
-    }
+  100% {
+    transform: rotate(360deg);
+  }
 }
 
 body.modal-open {
@@ -311,4 +315,3 @@ main {
   margin-top: 2rem;
   cursor: pointer;
 }
-
