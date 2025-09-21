@@ -200,7 +200,7 @@ body {
 }
 
 header {
-  height: 10dvh;
+  height: 4rem;
   box-sizing: border-box;
   display: flex;
   align-items: center;
@@ -222,7 +222,7 @@ header button {
 }
 
 .menu {
-  min-height: 90dvh;
+  height: calc(100dvh - 4rem);
   padding-inline: 1rem;
   width: 100vw;
   transform: translateX(-100%);
@@ -232,7 +232,7 @@ header button {
   position: fixed;
   z-index: 3;
   left: 0;
-  top: 10dvh;
+  top: 4rem;
   background-color: var(--background-color);
 }
 

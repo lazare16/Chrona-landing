@@ -100,7 +100,6 @@ window.addEventListener("DOMContentLoaded", () => {
 
   // Handlers
   const toggleMenu = () => {
-    console.log("toggling menu");
     if (!menu) return;
     const open = menu.classList.toggle("menu-open");
     menuIcon.textContent = open ? ICONS.menuClose : ICONS.menuOpen;
@@ -204,10 +203,6 @@ window.addEventListener("DOMContentLoaded", () => {
     if (delta > DRAG_CLOSE_PX) closeSheet();
   };
 
-  // Event wiring (JS-driven; inline onclicks are also supported via window.* above)
-  themeToggleBtn?.addEventListener("click", toggleTheme);
-
-
   backdrop?.addEventListener("click", closeSheet);
   openBtn?.addEventListener("click", openSheet);
 
@@ -237,19 +232,14 @@ const button_loader = document.getElementById("button-loader");
 
 email_form.addEventListener("submit", (e) => {
   e.preventDefault();
-  console.log("submit");
-  
- button_loader.style.display = "inline-block";
-  button_text.textContent = ""; 
+
+  button_loader.style.display = "inline-block";
+  button_text.textContent = "";
   send_email_button.disabled = true;
 
   setTimeout(() => {
     button_loader.style.display = "none";
-    button_text.textContent = "Send Email"; 
+    button_text.textContent = "Send Email";
     send_email_button.disabled = false;
   }, 5000);
 });
-
-
-
-
