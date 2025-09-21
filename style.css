@@ -64,11 +64,14 @@ html {
   margin: 10px auto 6px;
 }
 
-.sheet__body {
-  padding: 1rem;
+#email_form {
   background: var(--background-color);
   border-top-left-radius: 16px;
   border-top-right-radius: 16px;
+}
+
+.sheet__body {
+  padding: 1rem;
 }
 
 .input-container {
@@ -140,7 +143,6 @@ input:-webkit-autofill:active {
 }
 
 .sheet__footer {
-  background-color: var(--background-color);
   padding: 1rem;
 }
 
