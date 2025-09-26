@@ -320,3 +320,24 @@ main {
   margin-top: 2rem;
   cursor: pointer;
 }
+
+.title-mascot-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.title-mascot-container .right-side {
+  display: none;
+}
+
+.title-mascot-container .right-side>img {
+  aspect-ratio: 1/1;
+  width: 5.938rem;
+}
+
+@media (min-width: 26rem) {
+.title-mascot-container .right-side {
+    display: block;
+  }
+}
