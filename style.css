@@ -278,6 +278,9 @@ main {
 
 .hero-section {
   padding-top: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .hero-title {
@@ -300,6 +303,8 @@ main {
   font-weight: 300;
   line-height: 1.25rem;
   margin-top: 1.563rem;
+  text-align: center;
+  /* max-width: 15.25rem; */
 }
 
 
@@ -325,6 +330,7 @@ main {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  width: 100%;
 }
 
 .title-mascot-container .right-side {
@@ -336,7 +342,7 @@ main {
   width: 5.938rem;
 }
 
-@media (min-width: 26rem) {
+@media (min-width: 24rem) {
 .title-mascot-container .right-side {
     display: block;
   }
