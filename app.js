@@ -177,7 +177,7 @@ window.addEventListener("DOMContentLoaded", () => {
     backdrop.classList.add("show");
     body.classList.add("modal-open");
     document.addEventListener("keydown", onKeydown);
-    if (!check) {
+    if (check) {
       const f = getFocusables()[0];
       (f || sheet).focus();
     }
@@ -193,7 +193,7 @@ window.addEventListener("DOMContentLoaded", () => {
     sheet.style.transform = "";
     backdrop.style.opacity = "";
     document.removeEventListener("keydown", onKeydown);
-    if (!check) {
+    if (check) {
       openBtn?.focus();
     }
   };
