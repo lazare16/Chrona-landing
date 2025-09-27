@@ -298,7 +298,7 @@ main {
 .hero-subtext {
   color: var(--hero-subtext-color);
   font-family: 'Inter', sans-serif;
-  font-size: 0.875rem;
+  font-size: 1rem;
   font-style: normal;
   font-weight: 300;
   line-height: 1.25rem;
@@ -342,8 +342,49 @@ main {
   width: 5.938rem;
 }
 
+.vision-section {
+  height: 14.125rem;
+  margin-top: 3.125rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.card {
+  padding: 16px;
+  border-radius: 8px;
+}
+
+.card-title-container {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.card-title {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.875rem;
+  font-style: normal;
+  font-weight: 800;
+  line-height: normal;
+}
+
+.card-description-container {
+  margin-top: 10px;
+  width: 100%;
+}
+
+.card-description {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.875rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 1.25rem;
+  letter-spacing: 0.6px;
+}
+
 @media (min-width: 24rem) {
-.title-mascot-container .right-side {
+  .title-mascot-container .right-side {
     display: block;
   }
 }
