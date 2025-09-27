@@ -155,14 +155,22 @@ window.addEventListener("DOMContentLoaded", () => {
     }
   };
 
+  function isMobile() {
+    const regex =
+      /Mobi|Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i;
+    return regex.test(navigator.userAgent);
+  }
+
   const openSheet = () => {
     if (!sheet || !backdrop) return;
     sheet.classList.add("show");
     backdrop.classList.add("show");
     body.classList.add("modal-open");
     document.addEventListener("keydown", onKeydown);
-    const f = getFocusables()[0];
-    (f || sheet).focus();
+    if(!isMobile){
+       const f = getFocusables()[0];
+       (f || sheet).focus();
+    }
   };
 
   const closeSheet = () => {
@@ -175,7 +183,9 @@ window.addEventListener("DOMContentLoaded", () => {
     sheet.style.transform = "";
     backdrop.style.opacity = "";
     document.removeEventListener("keydown", onKeydown);
-    openBtn?.focus();
+    if(!isMobile){
+      openBtn?.focus();
+    }
   };
 
   // Swipe down to close
