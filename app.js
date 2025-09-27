@@ -49,6 +49,14 @@ const SELECTORS = {
   sheet: "#bottomSheet",
   backdrop: "#backdrop",
   openBtn: "#join-waitlist",
+  emailForm: "#email-form",
+  submitEmailBtn: "#submit-email",
+  buttonText: "#button-text",
+  buttonLoader: "#button-loader",
+  problemCard: "#problem-card",
+  problemCardTitle: "#problem-card-title",
+  problemCardDesc: "#problem-card-desc",
+  solutionCard: "#solution-card",
 };
 const DRAG_CLOSE_PX = 120;
 const FOCUSABLE_SEL =
@@ -66,6 +74,14 @@ window.addEventListener("DOMContentLoaded", () => {
   const sheet = qs(SELECTORS.sheet);
   const backdrop = qs(SELECTORS.backdrop);
   const openBtn = qs(SELECTORS.openBtn);
+  const emailForm = qs(SELECTORS.emailForm);
+  const submitEmailBtn = qs(SELECTORS.submitEmailBtn);
+  const buttonText = qs(SELECTORS.buttonText);
+  const buttonLoader = qs(SELECTORS.buttonLoader);
+  const problemCard = qs(SELECTORS.problemCard);
+  const problemCardTitle = qs(SELECTORS.problemCardTitle);
+  const problemCardDesc = qs(SELECTORS.problemCardDesc);
+  const solutionCard = qs(SELECTORS.solutionCard);
 
   // State
   let isDragging = false;
@@ -112,6 +128,11 @@ window.addEventListener("DOMContentLoaded", () => {
     htmlEl.setAttribute("data-theme", next);
     localStorage.setItem("user-theme", next);
     themeIcon.textContent = next === "light" ? ICONS.dark : ICONS.light;
+    problemCard.style.backgroundColor =
+      next === "light" ? "#EF6E5773" : "#ff694e";
+    problemCardDesc.style.color = next === "light" ? "#7B3737" : "#4C0000";
+    solutionCard.style.backgroundColor =
+      next === "light" ? "#98EF5773" : "#b2ff4e";
     // Close the menu if open to reflect action
     menu?.classList?.remove("menu-open");
     menuIcon.textContent = ICONS.menuOpen;
@@ -167,9 +188,9 @@ window.addEventListener("DOMContentLoaded", () => {
     backdrop.classList.add("show");
     body.classList.add("modal-open");
     document.addEventListener("keydown", onKeydown);
-    if(!isMobile){
-       const f = getFocusables()[0];
-       (f || sheet).focus();
+    if (!isMobile) {
+      const f = getFocusables()[0];
+      (f || sheet).focus();
     }
   };
 
@@ -183,7 +204,7 @@ window.addEventListener("DOMContentLoaded", () => {
     sheet.style.transform = "";
     backdrop.style.opacity = "";
     document.removeEventListener("keydown", onKeydown);
-    if(!isMobile){
+    if (!isMobile) {
       openBtn?.focus();
     }
   };
@@ -235,21 +256,16 @@ window.addEventListener("DOMContentLoaded", () => {
   }
 });
 
-const email_form = document.getElementById("email_form");
-const send_email_button = document.getElementById("submit-email");
-const button_text = document.getElementById("button-text");
-const button_loader = document.getElementById("button-loader");
-
 email_form.addEventListener("submit", (e) => {
   e.preventDefault();
 
-  button_loader.style.display = "inline-block";
-  button_text.textContent = "";
-  send_email_button.disabled = true;
+  buttonLoader.style.display = "inline-block";
+  buttonText.textContent = "";
+  submitEmailBtn.disabled = true;
 
   setTimeout(() => {
-    button_loader.style.display = "none";
-    button_text.textContent = "Send Email";
-    send_email_button.disabled = false;
+    buttonLoader.style.display = "none";
+    buttonText.textContent = "Send Email";
+    submitEmailBtn.disabled = false;
   }, 5000);
 });

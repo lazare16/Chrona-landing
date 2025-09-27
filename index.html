@@ -25,7 +25,7 @@
     aria-describedby="sheetDesc" tabindex="-1">
     <div class="sheet__handle" aria-hidden="true"></div>
 
-    <form action="" id="email_form">
+    <form action="" id="email-form">
       <div class="sheet__body" id="sheet-description">
 
         <div class="input-container" data-role="email-input">
@@ -85,19 +85,19 @@
     </section>
 
     <section id="overview" aria-label="Chrona vision about the product" class="vision-section">
-      <div class="card" style="background-color: #EF6E5773;" role="region" aria-label="The problem Chrona solves">
+      <div id="problem-card" class="card" role="region" aria-label="The problem Chrona solves">
         <div class="card-title-container">
           <img src="./assets/icons/problem-icon.svg" alt="problem icon" width="20" height="20">
-          <h6 class="card-title" style="color: #8C1D18;">The problem:</h6>
+          <h6  id="problem-card-title" class="card-title" style="color: #8C1D18;">The problem:</h6>
         </div>
         <div class="card-description-container">
-          <p class="card-description" style="color: #7B3737;">Students and busy individuals waste time manually creating
+          <p id="problem-card-desc" class="card-description">Students and busy individuals waste time manually creating
             daily agendas from scattered tasks and
             deadlines, leading to poorly organized days, missed priorities, and unnecessary stress.</p>
         </div>
       </div>
 
-      <div class="card" style="background-color: #98EF5773;" role="region" aria-label="The solution Chrona provides">
+      <div id="solution-card" class="card" role="region" aria-label="The solution Chrona provides">
         <div class="card-title-container">
           <img src="./assets/icons/eye-icon.svg" alt="eye icon" width="20" height="20">
           <h6 class="card-title" style="color: #58CC02;">
@@ -106,9 +106,9 @@
         </div>
         <div class="card-description-container">
           <p class="card-description">
-            Chrona transforms agenda creation from a tedious manual process into an automated workflow. Simply input
+            <span style="color: #58CC02; font-weight:500">Chrona</span> transforms agenda creation from a tedious manual process into an automated workflow. Simply input
             your tasks and
-            deadlines, or upload an image of your timetable, and Chrona's AI instantly generates optimized daily agendas
+            deadlines, or upload an image of your timetable, and <span style="color: #58CC02; font-weight:500">Chrona's</span> AI instantly generates optimized daily agendas
             for you.
           </p>
         </div>
