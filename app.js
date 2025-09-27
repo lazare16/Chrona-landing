@@ -121,39 +121,39 @@ window.addEventListener("DOMContentLoaded", () => {
   window.toggleMenu = toggleMenu;
   window.toggleTheme = toggleTheme;
 
-  // const getFocusables = () =>
-  //   sheet
-  //     ? [...sheet.querySelectorAll(FOCUSABLE_SEL)].filter(
-  //         (el) => !el.hasAttribute("disabled")
-  //       )
-  //     : [];
+  const getFocusables = () =>
+    sheet
+      ? [...sheet.querySelectorAll(FOCUSABLE_SEL)].filter(
+          (el) => !el.hasAttribute("disabled")
+        )
+      : [];
 
-  // const onKeydown = (e) => {
-  //   if (!sheet || !sheet.classList.contains("show")) return;
+  const onKeydown = (e) => {
+    if (!sheet || !sheet.classList.contains("show")) return;
 
-  //   if (e.key === "Escape") {
-  //     e.preventDefault();
-  //     closeSheet();
-  //     return;
-  //   }
-  //   if (e.key === "Tab") {
-  //     const focusables = getFocusables();
-  //     if (focusables.length === 0) {
-  //       e.preventDefault();
-  //       sheet.focus();
-  //       return;
-  //     }
-  //     const first = focusables[0];
-  //     const last = focusables[focusables.length - 1];
-  //     if (e.shiftKey && document.activeElement === first) {
-  //       e.preventDefault();
-  //       last.focus();
-  //     } else if (!e.shiftKey && document.activeElement === last) {
-  //       e.preventDefault();
-  //       first.focus();
-  //     }
-  //   }
-  // };
+    if (e.key === "Escape") {
+      e.preventDefault();
+      closeSheet();
+      return;
+    }
+    if (e.key === "Tab") {
+      const focusables = getFocusables();
+      if (focusables.length === 0) {
+        e.preventDefault();
+        sheet.focus();
+        return;
+      }
+      const first = focusables[0];
+      const last = focusables[focusables.length - 1];
+      if (e.shiftKey && document.activeElement === first) {
+        e.preventDefault();
+        last.focus();
+      } else if (!e.shiftKey && document.activeElement === last) {
+        e.preventDefault();
+        first.focus();
+      }
+    }
+  };
 
   const openSheet = () => {
     if (!sheet || !backdrop) return;
@@ -175,7 +175,7 @@ window.addEventListener("DOMContentLoaded", () => {
     sheet.style.transform = "";
     backdrop.style.opacity = "";
     document.removeEventListener("keydown", onKeydown);
-    // openBtn?.focus();
+    openBtn?.focus();
   };
 
   // Swipe down to close
