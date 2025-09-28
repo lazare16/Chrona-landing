@@ -54,17 +54,21 @@ const SELECTORS = {
   buttonText: "#button-text",
   buttonLoader: "#button-loader",
   problemCard: "#problem-card",
+  problemIcon: "#problem-icon",
   problemCardTitle: "#problem-card-title",
   problemCardDesc: "#problem-card-desc",
   solutionCard: "#solution-card",
+  solutionIcon: "#solution-icon",
   solutionCardTitle: "#solution-card-title",
   solutionCardDesc: "#solution-card-desc",
+  solutionCardDescHighlights: ".solution-highlight",
 };
 const DRAG_CLOSE_PX = 120;
 const FOCUSABLE_SEL =
   'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])';
 
 const qs = (s, root = document) => root.querySelector(s);
+const qsa = (s, root = document) => root.querySelectorAll(s);
 
 window.addEventListener("DOMContentLoaded", () => {
   // Cache DOM
@@ -81,11 +85,16 @@ window.addEventListener("DOMContentLoaded", () => {
   const buttonText = qs(SELECTORS.buttonText);
   const buttonLoader = qs(SELECTORS.buttonLoader);
   const problemCard = qs(SELECTORS.problemCard);
+  const problemIcon = qs(SELECTORS.problemIcon);
   const problemCardTitle = qs(SELECTORS.problemCardTitle);
   const problemCardDesc = qs(SELECTORS.problemCardDesc);
   const solutionCard = qs(SELECTORS.solutionCard);
+  const solutionIcon = qs(SELECTORS.solutionIcon);
   const solutionCardTitle = qs(SELECTORS.solutionCardTitle);
   const solutionCardDesc = qs(SELECTORS.solutionCardDesc);
+  const solutionCardDescHighlights = qsa(
+    SELECTORS.solutionCardDescHighlights
+  );
   // State
   let isDragging = false;
   let startY = 0;
@@ -104,15 +113,29 @@ window.addEventListener("DOMContentLoaded", () => {
   // Show opposite icon (tap indicates the other mode)
   themeIcon.textContent = initialTheme === "light" ? ICONS.dark : ICONS.light;
   problemCard.style.backgroundColor =
-    initialTheme === "light" ? "rgba(239, 110, 87, 1)" : "rgba(255, 47, 47, 1)";
+    initialTheme === "light" ? "#FDD3D0" : "#EC221F";
+  problemIcon.setAttribute(
+    "stroke",
+    `${initialTheme === "light" ? "#C00F0C" : "#900B09"}`
+  );
   problemCardTitle.style.color =
-    initialTheme === "light" ? "rgba(140, 29, 24, 1)" : "rgba(140, 29, 24, 1)";
+    initialTheme === "light" ? "#C00F0C" : "#900B09";
   problemCardDesc.style.color =
-    initialTheme === "light" ? "rgba(123, 55, 55, 1)" : "rgba(90, 0, 0, 1)";
+    initialTheme === "light" ? "#900B09" : "#FEE9E7";
   solutionCard.style.backgroundColor =
-    initialTheme === "light" ? "rgba(152, 239, 87, 1)" : "rgb(137 255 47)";
+    initialTheme === "light" ? "#CFF7D3" : "#14AE5C";
+  solutionIcon.setAttribute(
+    "stroke",
+    `${initialTheme === "light" ? "#009951" : "#02542D"}`
+  );
   solutionCardTitle.style.color =
-    initialTheme === "light" ? "rgba(88, 204, 2, 1)" : "rgba(88, 204, 2, 1)";
+    initialTheme === "light" ? "#009951" : "#02542D";
+  solutionCardDesc.style.color =
+    initialTheme === "light" ? "#02542D" : "#EBFFEE";
+  solutionCardDescHighlights.forEach(
+    (el) =>
+      (el.style.color = initialTheme === "light" ? "#009951" : "#02542D")
+  );
   themeToggleBtn?.appendChild(themeIcon);
 
   const menuIcon = document.createElement("span");
@@ -142,19 +165,25 @@ window.addEventListener("DOMContentLoaded", () => {
     localStorage.setItem("user-theme", next);
     themeIcon.textContent = next === "light" ? ICONS.dark : ICONS.light;
     problemCard.style.backgroundColor =
-      initialTheme === "light"
-        ? "rgba(239, 110, 87, 1)"
-        : "rgba(255, 47, 47, 1)";
-    problemCardTitle.style.color =
-      initialTheme === "light"
-        ? "rgba(140, 29, 24, 1)"
-        : "rgba(140, 29, 24, 1)";
-    problemCardDesc.style.color =
-      initialTheme === "light" ? "rgba(123, 55, 55, 1)" : "rgba(90, 0, 0, 1)";
+      next === "light" ? "#FDD3D0" : "#EC221F";
+    problemIcon.setAttribute(
+      "stroke",
+      `${next === "light" ? "#C00F0C" : "#900B09"}`
+    );
+    problemCardTitle.style.color = next === "light" ? "#C00F0C" : "#900B09";
+    problemCardDesc.style.color = next === "light" ? "#900B09" : "#FEE9E7";
+
     solutionCard.style.backgroundColor =
-      initialTheme === "light" ? "rgba(152, 239, 87, 1)" : "rgb(137 255 47)";
-    solutionCardTitle.style.color =
-      initialTheme === "light" ? "rgba(88, 204, 2, 1)" : "rgba(88, 204, 2, 1)";
+      next === "light" ? "#CFF7D3" : "#14AE5C";
+    solutionIcon.setAttribute(
+      "stroke",
+      `${next === "light" ? "#009951" : "#02542D"}`
+    );
+    solutionCardTitle.style.color = next === "light" ? "#009951" : "#02542D";
+    solutionCardDesc.style.color = next === "light" ? "#02542D" : "#EBFFEE";
+    solutionCardDescHighlights.forEach(
+      (el) => (el.style.color = next === "light" ? "#009951" : "#02542D")
+    );
     // Close the menu if open to reflect action
     menu?.classList?.remove("menu-open");
     menuIcon.textContent = ICONS.menuOpen;
