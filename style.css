@@ -12,7 +12,8 @@ html {
   --spacing: 1rem;
   --color: #000;
   --background-color: #fff;
-  --hero-subtext-color: #475467;
+  /* --hero-subtext-color: #475467; */
+  --secondary-color: #757575;
   --box-shadow-color: #00000012;
 }
 
@@ -20,8 +21,9 @@ html {
   --spacing: 1rem;
   --background-color: #121212;
   --color: #fff;
-  --hero-subtext-color: #fff;
-  --box-shadow-color: #00000036;
+  /* --hero-subtext-color: #fff; */
+  --secondary-color: #B3B3B3;
+  --box-shadow-color: #00000013;
 }
 
 .backdrop {
@@ -222,6 +224,10 @@ header button {
   border: none;
 }
 
+.material-icons {
+  color: var(--secondary-color);
+}
+
 #main-navigation {
   display: none;
 }
@@ -255,7 +261,7 @@ header button {
 
 .menu a {
   text-decoration: none;
-  color: inherit;
+  color: var(--secondary-color);
   font-family: 'Outfit', sans-serif;
   font-size: 1rem;
 }
@@ -296,14 +302,13 @@ main {
 }
 
 .hero-subtext {
-  color: var(--hero-subtext-color);
+  color: var(--secondary-color);
   font-family: 'Inter', sans-serif;
   font-size: 1rem;
   font-style: normal;
   font-weight: 300;
   line-height: 1.25rem;
   margin-top: 1.563rem;
-  text-align: center;
   /* max-width: 15.25rem; */
 }
 
@@ -348,7 +353,8 @@ main {
   display: flex;
   flex-direction: column;
   gap: 1.25rem;
-  padding-bottom: 3.125rem;;
+  padding-bottom: 3.125rem;
+  ;
 }
 
 .card {
