@@ -230,7 +230,7 @@ header {
 }
 
 main {
-  height: 80dvh;
+  height: calc(100dvh - (10dvh + 90px));
   padding-inline: 1rem;
 }
 
@@ -343,7 +343,6 @@ main {
 }
 
 footer {
-  height: 10dvh;
   padding: var(--spacing);
   border-top: 1px solid var(--border-color);
 }
