@@ -200,6 +200,8 @@ input:-webkit-autofill:active {
 body {
   background-color: var(--background-color);
   color: var(--color);
+  min-height: 100dvh;
+  overflow: hidden;
 }
 
 .material-icons {
@@ -208,7 +210,7 @@ body {
 
 header {
   /* height: 4rem; */
-
+  height: 10dvh;
   box-sizing: border-box;
   display: flex;
   align-items: center;
@@ -229,7 +231,7 @@ header {
 }
 
 main {
-  height: 80vh;
+  height: 80dvh;
   padding-inline: 1rem;
 }
 
@@ -342,6 +344,7 @@ main {
 }
 
 footer {
+  height: 10dvh;
   padding: var(--spacing);
   border-top: 1px solid var(--border-color);
 }
