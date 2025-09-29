@@ -198,7 +198,6 @@ input:-webkit-autofill:active {
 }
 
 body {
-  height: 100vh;
   background-color: var(--background-color);
   color: var(--color);
 }
@@ -209,12 +208,12 @@ body {
 
 header {
   /* height: 4rem; */
-height: 10vh;
+
   box-sizing: border-box;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding-inline: 1rem;
+  padding: var(--spacing);
   /* box-shadow: 0px 3px 8px 5px var(--box-shadow-color); */
 }
 
@@ -343,8 +342,7 @@ main {
 }
 
 footer {
-  height: 10vh;
-  padding-inline: var(--spacing);
+  padding: var(--spacing);
   border-top: 1px solid var(--border-color);
 }
 
