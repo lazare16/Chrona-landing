@@ -15,6 +15,9 @@ html {
   /* --hero-subtext-color: #475467; */
   --secondary-color: #757575;
   --box-shadow-color: #00000012;
+  --border-color: #D9D9D9;
+  --footer-primary: #767676;
+  --footer-secondary: #B3B3B3;
 }
 
 :root[data-theme="dark"] {
@@ -24,6 +27,9 @@ html {
   /* --hero-subtext-color: #fff; */
   --secondary-color: #B3B3B3;
   --box-shadow-color: #00000013;
+  --border-color: #757575;
+  --footer-primary: #767676;
+  --footer-secondary: #F3F3F3;
 }
 
 .backdrop {
@@ -68,7 +74,7 @@ html {
   margin: 10px auto 6px;
 }
 
-#email_form {
+#email-form {
   background: var(--background-color);
   border-top-left-radius: 16px;
   border-top-right-radius: 16px;
@@ -215,66 +221,15 @@ header {
   /* box-shadow: 0px 3px 8px 5px var(--box-shadow-color); */
 }
 
-header>a {
-  text-decoration: none;
-}
-
-header button {
-  background: transparent;
-  border: none;
-}
-
 .material-icons {
   color: var(--secondary-color);
 }
 
-#main-navigation {
-  display: none;
-}
-
-.menu {
-  height: calc(100dvh - 4rem);
-  padding-inline: 1rem;
-  width: 100vw;
-  transform: translateX(-100%);
-  transition: transform .5s ease;
-  box-sizing: border-box;
-  padding-top: 1rem;
-  position: fixed;
-  z-index: 3;
-  left: 0;
-  top: 4rem;
-  background-color: var(--background-color);
-}
-
-.menu>ul {
-  list-style-type: none;
-  height: 100%;
-}
-
-.menu>ul>li {
-  height: 40px;
-  padding-block: 10px;
-  display: flex;
-  align-items: center;
-}
-
-.menu a {
-  text-decoration: none;
-  color: var(--secondary-color);
-  font-family: 'Outfit', sans-serif;
-  font-size: 1rem;
-}
-
 #theme-toggle {
-  position: absolute;
-  bottom: 1rem;
+  /* position: absolute;
+  bottom: 1rem; */
   background: transparent;
   border: 0px;
-}
-
-.menu.menu-open {
-  transform: translateX(0);
 }
 
 main {
@@ -388,6 +343,39 @@ main {
   font-weight: 400;
   line-height: 1.25rem;
   letter-spacing: 0.6px;
+}
+
+footer {
+  padding: var(--spacing);
+  border-top: 1px solid var(--border-color);
+}
+
+.logo-socials-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.socials-container {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.created-by {
+  color: var(--footer-secondary);
+  font-family: 'Inter', sans-serif;
+  font-size: 0.75rem;
+  font-style: normal;
+  font-weight: 300;
+  line-height: 1.125rem;
+  /* 150% */
+}
+
+.author {
+  color: var(--footer-primary);
+  /* color: #58CC02; */
+  font-weight: 500;
 }
 
 @media (min-width: 24rem) {

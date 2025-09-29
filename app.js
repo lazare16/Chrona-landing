@@ -39,13 +39,16 @@
 const ICONS = {
   light: "light_mode",
   dark: "dark_mode",
-  menuOpen: "menu",
-  menuClose: "close",
+  facebook: "facebook",
+  facebookDarkTheme: "facebook-dark-theme",
+  instagram: "instagram",
+  instagramDarkTheme: "instagram-dark-theme",
+  x: "x",
+  xDarkTheme: "x-dark-theme",
 };
 const SELECTORS = {
   menu: ".menu",
   themeToggle: "#theme-toggle",
-  menuToggle: "#toggle-menu",
   sheet: "#bottomSheet",
   backdrop: "#backdrop",
   openBtn: "#join-waitlist",
@@ -53,6 +56,9 @@ const SELECTORS = {
   submitEmailBtn: "#submit-email",
   buttonText: "#button-text",
   buttonLoader: "#button-loader",
+  facebookIcon: "#facebook-id",
+  instagramIcon: "#instagram-id",
+  xIcon: "#x-id",
 };
 const DRAG_CLOSE_PX = 120;
 const FOCUSABLE_SEL =
@@ -60,14 +66,11 @@ const FOCUSABLE_SEL =
 
 const qs = (s, root = document) => root.querySelector(s);
 
-
 window.addEventListener("DOMContentLoaded", () => {
   // Cache DOM
   const htmlEl = document.documentElement;
   const body = document.body;
-  const menu = qs(SELECTORS.menu);
   const themeToggleBtn = qs(SELECTORS.themeToggle);
-  const menuToggleBtn = qs(SELECTORS.menuToggle);
   const sheet = qs(SELECTORS.sheet);
   const backdrop = qs(SELECTORS.backdrop);
   const openBtn = qs(SELECTORS.openBtn);
@@ -75,7 +78,10 @@ window.addEventListener("DOMContentLoaded", () => {
   const submitEmailBtn = qs(SELECTORS.submitEmailBtn);
   const buttonText = qs(SELECTORS.buttonText);
   const buttonLoader = qs(SELECTORS.buttonLoader);
- 
+  const facebookIcon = qs(SELECTORS.facebookIcon);
+  const instagramIcon = qs(SELECTORS.instagramIcon);
+  const xIcon = qs(SELECTORS.xIcon);
+
   // State
   let isDragging = false;
   let startY = 0;
@@ -93,14 +99,34 @@ window.addEventListener("DOMContentLoaded", () => {
   htmlEl.setAttribute("data-theme", initialTheme);
   // Show opposite icon (tap indicates the other mode)
   themeIcon.textContent = initialTheme === "light" ? ICONS.dark : ICONS.light;
-  
+   facebookIcon.setAttribute(
+     "src",
+     `${
+       initialTheme === "light"
+         ? "./assets/icons/facebook.svg"
+         : "./assets/icons/facebook-dark-theme.svg"
+     }`
+   );
+   instagramIcon.setAttribute(
+     "src",
+     `${
+       initialTheme === "light"
+         ? "./assets/icons/instagram.svg"
+         : "./assets/icons/instagram-dark-theme.svg"
+     }`
+   );
+   xIcon.setAttribute(
+     "src",
+     `${
+       initialTheme === "light"
+         ? "./assets/icons/x.svg"
+         : "./assets/icons/x-dark-theme.svg"
+     }`
+   );
+
+
   themeToggleBtn?.appendChild(themeIcon);
 
-  const menuIcon = document.createElement("span");
-  menuIcon.classList.add("material-icons");
-  menuIcon.textContent = ICONS.menuOpen;
-  menuToggleBtn?.appendChild(menuIcon);
-  menuToggleBtn?.setAttribute("aria-expanded", "false");
 
   if (sheet) {
     sheet.setAttribute("role", "dialog");
@@ -108,28 +134,40 @@ window.addEventListener("DOMContentLoaded", () => {
     sheet.setAttribute("tabindex", "-1"); // focus target fallback
   }
 
-  // Handlers
-  const toggleMenu = () => {
-    if (!menu) return;
-    const open = menu.classList.toggle("menu-open");
-    menuIcon.textContent = open ? ICONS.menuClose : ICONS.menuOpen;
-    menuToggleBtn?.setAttribute("aria-expanded", String(open));
-  };
-
   const toggleTheme = () => {
     const next =
       htmlEl.getAttribute("data-theme") === "light" ? "dark" : "light";
     htmlEl.setAttribute("data-theme", next);
     localStorage.setItem("user-theme", next);
     themeIcon.textContent = next === "light" ? ICONS.dark : ICONS.light;
-    
-    // Close the menu if open to reflect action
-    menu?.classList?.remove("menu-open");
-    menuIcon.textContent = ICONS.menuOpen;
+    facebookIcon.setAttribute(
+      "src",
+      `${
+        next === "light"
+          ? "./assets/icons/facebook.svg"
+          : "./assets/icons/facebook-dark-theme.svg"
+      }`
+    );
+    instagramIcon.setAttribute(
+      "src",
+      `${
+        next === "light"
+          ? "./assets/icons/instagram.svg"
+          : "./assets/icons/instagram-dark-theme.svg"
+      }`
+    );
+    xIcon.setAttribute(
+      "src",
+      `${
+        next === "light"
+          ? "./assets/icons/x.svg"
+          : "./assets/icons/x-dark-theme.svg"
+      }`
+    );
+
   };
 
   // Expose for inline onclick attributes present in HTML
-  window.toggleMenu = toggleMenu;
   window.toggleTheme = toggleTheme;
 
   const getFocusables = () =>
@@ -244,18 +282,19 @@ window.addEventListener("DOMContentLoaded", () => {
     );
     sheet.addEventListener("touchend", endDrag);
   }
-});
 
-email_form.addEventListener("submit", (e) => {
-  e.preventDefault();
+  // Move email form event listener inside DOMContentLoaded and use correct variable
+  emailForm?.addEventListener("submit", (e) => {
+    e.preventDefault();
 
-  buttonLoader.style.display = "inline-block";
-  buttonText.textContent = "";
-  submitEmailBtn.disabled = true;
+    buttonLoader.style.display = "inline-block";
+    buttonText.textContent = "";
+    submitEmailBtn.disabled = true;
 
-  setTimeout(() => {
-    buttonLoader.style.display = "none";
-    buttonText.textContent = "Send Email";
-    submitEmailBtn.disabled = false;
-  }, 5000);
+    setTimeout(() => {
+      buttonLoader.style.display = "none";
+      buttonText.textContent = "Send Email";
+      submitEmailBtn.disabled = false;
+    }, 5000);
+  });
 });
