@@ -230,7 +230,7 @@ height: 10vh;
 }
 
 main {
-  height: 80dvh;
+  height: 80vh;
   padding-inline: 1rem;
 }
 
@@ -344,7 +344,6 @@ main {
 
 footer {
   height: 10vh;
- 
   padding-inline: var(--spacing);
   border-top: 1px solid var(--border-color);
 }
@@ -353,7 +352,6 @@ footer {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding-top: var(--spacing);
 }
 
 .socials-container {
