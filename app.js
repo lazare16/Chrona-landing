@@ -39,12 +39,12 @@
 const ICONS = {
   light: "light_mode",
   dark: "dark_mode",
-  facebook: "facebook",
-  facebookDarkTheme: "facebook-dark-theme",
-  instagram: "instagram",
-  instagramDarkTheme: "instagram-dark-theme",
-  x: "x",
-  xDarkTheme: "x-dark-theme",
+  // facebook: "facebook",
+  // facebookDarkTheme: "facebook-dark-theme",
+  // instagram: "instagram",
+  // instagramDarkTheme: "instagram-dark-theme",
+  // x: "x",
+  // xDarkTheme: "x-dark-theme",
 };
 const SELECTORS = {
   menu: ".menu",
@@ -56,9 +56,9 @@ const SELECTORS = {
   submitEmailBtn: "#submit-email",
   buttonText: "#button-text",
   buttonLoader: "#button-loader",
-  facebookIcon: "#facebook-id",
-  instagramIcon: "#instagram-id",
-  xIcon: "#x-id",
+  // facebookIcon: "#facebook-id",
+  // instagramIcon: "#instagram-id",
+  // xIcon: "#x-id",
 };
 const DRAG_CLOSE_PX = 120;
 const FOCUSABLE_SEL =
@@ -78,9 +78,9 @@ window.addEventListener("DOMContentLoaded", () => {
   const submitEmailBtn = qs(SELECTORS.submitEmailBtn);
   const buttonText = qs(SELECTORS.buttonText);
   const buttonLoader = qs(SELECTORS.buttonLoader);
-  const facebookIcon = qs(SELECTORS.facebookIcon);
-  const instagramIcon = qs(SELECTORS.instagramIcon);
-  const xIcon = qs(SELECTORS.xIcon);
+  // const facebookIcon = qs(SELECTORS.facebookIcon);
+  // const instagramIcon = qs(SELECTORS.instagramIcon);
+  // const xIcon = qs(SELECTORS.xIcon);
 
   // State
   let isDragging = false;
@@ -99,30 +99,30 @@ window.addEventListener("DOMContentLoaded", () => {
   htmlEl.setAttribute("data-theme", initialTheme);
   // Show opposite icon (tap indicates the other mode)
   themeIcon.textContent = initialTheme === "light" ? ICONS.dark : ICONS.light;
-   facebookIcon.setAttribute(
-     "src",
-     `${
-       initialTheme === "light"
-         ? "./assets/icons/facebook.svg"
-         : "./assets/icons/facebook-dark-theme.svg"
-     }`
-   );
-   instagramIcon.setAttribute(
-     "src",
-     `${
-       initialTheme === "light"
-         ? "./assets/icons/instagram.svg"
-         : "./assets/icons/instagram-dark-theme.svg"
-     }`
-   );
-   xIcon.setAttribute(
-     "src",
-     `${
-       initialTheme === "light"
-         ? "./assets/icons/x.svg"
-         : "./assets/icons/x-dark-theme.svg"
-     }`
-   );
+  //  facebookIcon.setAttribute(
+  //    "src",
+  //    `${
+  //      initialTheme === "light"
+  //        ? "./assets/icons/facebook.svg"
+  //        : "./assets/icons/facebook-dark-theme.svg"
+  //    }`
+  //  );
+  //  instagramIcon.setAttribute(
+  //    "src",
+  //    `${
+  //      initialTheme === "light"
+  //        ? "./assets/icons/instagram.svg"
+  //        : "./assets/icons/instagram-dark-theme.svg"
+  //    }`
+  //  );
+  //  xIcon.setAttribute(
+  //    "src",
+  //    `${
+  //      initialTheme === "light"
+  //        ? "./assets/icons/x.svg"
+  //        : "./assets/icons/x-dark-theme.svg"
+  //    }`
+  //  );
 
 
   themeToggleBtn?.appendChild(themeIcon);
@@ -140,30 +140,30 @@ window.addEventListener("DOMContentLoaded", () => {
     htmlEl.setAttribute("data-theme", next);
     localStorage.setItem("user-theme", next);
     themeIcon.textContent = next === "light" ? ICONS.dark : ICONS.light;
-    facebookIcon.setAttribute(
-      "src",
-      `${
-        next === "light"
-          ? "./assets/icons/facebook.svg"
-          : "./assets/icons/facebook-dark-theme.svg"
-      }`
-    );
-    instagramIcon.setAttribute(
-      "src",
-      `${
-        next === "light"
-          ? "./assets/icons/instagram.svg"
-          : "./assets/icons/instagram-dark-theme.svg"
-      }`
-    );
-    xIcon.setAttribute(
-      "src",
-      `${
-        next === "light"
-          ? "./assets/icons/x.svg"
-          : "./assets/icons/x-dark-theme.svg"
-      }`
-    );
+    // facebookIcon.setAttribute(
+    //   "src",
+    //   `${
+    //     next === "light"
+    //       ? "./assets/icons/facebook.svg"
+    //       : "./assets/icons/facebook-dark-theme.svg"
+    //   }`
+    // );
+    // instagramIcon.setAttribute(
+    //   "src",
+    //   `${
+    //     next === "light"
+    //       ? "./assets/icons/instagram.svg"
+    //       : "./assets/icons/instagram-dark-theme.svg"
+    //   }`
+    // );
+    // xIcon.setAttribute(
+    //   "src",
+    //   `${
+    //     next === "light"
+    //       ? "./assets/icons/x.svg"
+    //       : "./assets/icons/x-dark-theme.svg"
+    //   }`
+    // );
 
   };
 
