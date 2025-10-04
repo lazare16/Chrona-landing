@@ -322,6 +322,15 @@ main {
   border-radius: 8px;
   padding: 10px;
   box-shadow: 4px 4px 8px 0px var(--card-shadow);
+  display: flex;
+  justify-content: space-between;
+}
+
+.features-section .card-container .card > .left-side > .card-title {
+  color: #58CC02;
+  font-family: 'Outfit', sans-serif;
+  font-size: 0.875rem;
+  font-weight: bold;
 }
 
 
