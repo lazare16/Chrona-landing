@@ -27,7 +27,7 @@ html {
   /* --hero-subtext-color: #fff; */
   --secondary-color: #B3B3B3;
   --secondary-border-color: rgb(178, 178, 178, 0.1);
-  --card-shadow: rgb(0, 0, 0, 0.85);
+  --card-shadow: #00000047; /*rgb(0, 0, 0, 0.85) */
   --border-color: #757575;
 }
 
