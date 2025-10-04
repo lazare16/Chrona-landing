@@ -294,9 +294,6 @@ main {
 
 .features-section {
   padding-top: 5.5rem;
-  display: flex;
-  flex-direction: column;
-  gap: 3.063rem;
 }
 
 .features-section>.section-title {
@@ -312,7 +309,7 @@ main {
 .features-section .card-container {
   display: flex;
   flex-direction: column;
-  gap: 1.313rem;
+  margin-top: 1.313rem;
 }
 
 .features-section .card-container .card{
