@@ -312,7 +312,7 @@ main {
 .features-section .card-container {
   display: flex;
   flex-direction: column;
-  gap: 3.063rem;
+  gap: 1.313rem;
 }
 
 .features-section .card-container .card{
@@ -329,7 +329,7 @@ main {
 .features-section .card-container .card > .left-side > .card-title {
   color: #58CC02;
   font-family: 'Outfit', sans-serif;
-  font-size: 0.875rem;
+  font-size: 1rem;
   font-weight: bold;
 }
 
