@@ -301,7 +301,7 @@ main {
 .features-section>.section-title {
   color: var(--secondary-color);
   font-family: 'Inter', sans-serif;
-  font-size: 1.125rem;
+  font-size: 1.5rem;
   font-style: normal;
   font-weight: bold;
   line-height: auto;
@@ -329,7 +329,7 @@ main {
 .card-title {
   font-family: 'Outfit', sans-serif;
   font-weight: bold;
-  font-size: 1rem;
+  font-size: 1.25rem;
   color: #58CC02;
 }
 
@@ -347,7 +347,7 @@ main {
   font-family: 'Inter', sans-serif;
   line-height: auto;
   font-weight: 300;
-  font-size: 14px;
+  font-size: 1rem;
   /* max-width: 139px; */
 }
 
