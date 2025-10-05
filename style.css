@@ -359,6 +359,11 @@ main {
   flex-grow: 1;
 }
 
+.card-container>.right-side > img {
+ object-fit: fill;
+ height: 75px;
+ background-color: red;
+}
 
 
 @media (min-width: 24rem) {
