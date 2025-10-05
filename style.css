@@ -309,26 +309,56 @@ main {
 .features-section .card-container {
   display: flex;
   flex-direction: column;
+  align-items: center;
   margin-top: 1.313rem;
 }
 
 .features-section .card-container .card{
-  width: 100%;
   border: 1px solid var(--secondary-border-color);
-  height: 6.813rem;
   border-radius: 8px;
   padding: 10px;
   box-shadow: 4px 4px 8px 0px var(--card-shadow);
   display: flex;
   justify-content: space-between;
+  width: 100%;
+  /* max-width: 286.67px; */
+  display: flex;
+  flex-direction: column;
 }
 
-.features-section .card-container .card > .left-side > .card-title {
-  color: #58CC02;
-  font-family: 'Outfit', sans-serif;
-  font-size: 1rem;
-  font-weight: bold;
+.card-title {
+    font-family: 'Outfit', sans-serif;
+    font-weight: bold;
+    font-size: 1rem;
+    color: #58CC02;
 }
+
+.card-content{
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-top: 18px;
+}
+
+.card-content>.left-side{
+  flex-grow: 1;
+}
+
+.card-content > .left-side > .card-description {
+  font-family: 'Inter', sans-serif;
+  line-height: auto;
+  font-weight: 300;
+  font-size: 14px;
+  /* max-width: 139px; */
+}
+
+.card-content>.right-side {
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-end;
+  flex-grow: 1;
+}
+
 
 
 @media (min-width: 24rem) {
