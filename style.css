@@ -341,8 +341,6 @@ main {
 
 .card-content>.left-side {
   flex-grow: 1;
-  width: 50%;
-  background-color: red;
 }
 
 .card-content>.left-side>.card-description {
@@ -355,14 +353,13 @@ main {
 
 .card-content>.right-side {
   height: 75px;
-  width: 50%;
-  background-color: green;
+  display: flex;
+  justify-content: flex-end;
 }
 
 .card-content>.right-side>img {
-  width: 100%;
   height: 100%;
-  object-fit: fill;
+  width: auto;
 }
 
 @media (min-width: 24rem) {
