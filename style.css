@@ -340,10 +340,6 @@ main {
   margin-top: 18px;
 }
 
-.card-content>.left-side{
-  flex-grow: 1;
-}
-
 .card-content > .left-side > .card-description {
   font-family: 'Inter', sans-serif;
   line-height: auto;
@@ -356,14 +352,9 @@ main {
   display: flex;
   align-items: flex-end;
   justify-content: flex-end;
-  flex-grow: 1;
 }
 
-.card-container>.right-side > img {
- object-fit: fill;
- height: 75px;
- background-color: red;
-}
+
 
 
 @media (min-width: 24rem) {
