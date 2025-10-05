@@ -318,8 +318,6 @@ main {
   border-radius: 8px;
   padding: 10px;
   box-shadow: 4px 4px 8px 0px var(--card-shadow);
-  display: flex;
-  justify-content: space-between;
   width: 100%;
   /* max-width: 286.67px; */
   display: flex;
@@ -335,9 +333,12 @@ main {
 
 .card-content{
   display: flex;
-  justify-content: space-between;
   align-items: flex-start;
   margin-top: 18px;
+}
+
+.card-content>.left-side {
+  flex-grow: 1;
 }
 
 .card-content > .left-side > .card-description {
@@ -349,13 +350,14 @@ main {
 }
 
 .card-content>.right-side {
-  display: flex;
-  align-items: flex-end;
-  justify-content: flex-end;
+  height: 75px;
 }
 
+.card-content>.right-side > img {
+  width: 100%;
+  height: 100%;
 
-
+}
 
 @media (min-width: 24rem) {
   .title-mascot-container .right-side {
